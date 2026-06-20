@@ -183,13 +183,25 @@ h1.title em{font-style:normal;color:var(--royal-500)}
 .kowrap{position:relative;border:1px solid var(--line-2);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.006));padding:26px 28px 30px;overflow-x:auto}
 .bracket{position:relative;margin:0 auto}
 .bracket svg.tracks{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.tie{position:absolute;z-index:1;background:rgba(31,33,38,.92);border:1px solid var(--line-2);border-radius:9px;overflow:hidden}
-.tie .s{display:flex;align-items:center;gap:8px;padding:6px 9px;font-size:11.5px;color:var(--mut)}
-.tie .s+.s{border-top:1px solid rgba(255,255,255,.05)}
-.tie .s .d{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--royal-500);flex:none}
-.tie .s.win{color:#fff;font-weight:600}.tie .s.win .d{background:var(--royal-500)}
-.tie .s .cc{font-weight:700;font-size:10px;color:var(--mut2)}
-.tie .tl{position:absolute;top:-9px;left:9px;font-family:var(--serif);font-size:11px;color:var(--mut2);background:var(--midnight);padding:0 6px}
+.tie{position:absolute;z-index:1;background:rgba(31,33,38,.96);border:1px solid var(--line-2);border-radius:9px}
+.tie .s,.finslots .s{display:flex;align-items:center;gap:8px;padding:7px 9px;font-size:11.5px;color:var(--mut)}
+.tie .s+.s,.finslots .s+.s{border-top:1px solid rgba(255,255,255,.06)}
+.tie .s .d,.finslots .s .d{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--royal-500);flex:none}
+.tie .s.win,.finslots .s.win{color:#fff;font-weight:600}.tie .s.win .d,.finslots .s.win .d{background:var(--royal-500)}
+.tie .s .cc,.finslots .s .cc{font-weight:700;font-size:10px;color:var(--mut2);flex:none}
+.tie .s .bnm,.finslots .s .bnm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tie .s .bnm.tbd,.finslots .s .bnm.tbd{color:var(--mut2);font-style:italic}
+.finslots{background:rgba(0,0,0,.22);border:1px solid var(--line-2);border-radius:8px;margin-top:9px;overflow:hidden;text-align:left}
+.tie .tl{position:absolute;top:-9px;left:9px;font-family:var(--serif);font-size:11px;color:var(--mut2);background:var(--midnight);padding:0 6px;z-index:1}
+.tie-sc{width:30px;height:24px;flex:none;text-align:center;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;
+ color:#fff;background:rgba(0,0,0,.32);border:1px solid var(--line);border-radius:6px;font-family:var(--sans)}
+.tie-sc:focus{outline:0;border-color:var(--royal-500);background:rgba(0,57,181,.18)}
+.tie-sc.res{border-color:rgba(58,208,127,.5)}
+.tie-sc:disabled{opacity:.45}
+.brteam{flex:1;min-width:0;height:24px;background:rgba(0,0,0,.3);border:1px solid var(--line-2);border-radius:6px;color:#fff;padding:0 7px;font-family:var(--sans);font-size:11.5px}
+.brteam:focus{outline:0;border-color:var(--royal-500)}
+.tie-pens{display:flex;align-items:center;gap:5px;padding:5px 9px 6px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut2);border-top:1px solid rgba(255,255,255,.06)}
+.tie-pens .penbtn{padding:2px 7px;font-size:10px}
 .koterm{position:absolute;z-index:2;border-radius:14px;border:1px solid rgba(140,166,222,.45);background:linear-gradient(160deg,rgba(0,57,181,.30),rgba(18,39,91,.55));padding:16px 18px;text-align:center}
 .koterm .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--royal-300);font-weight:600}
 .koterm .trophy{font-size:28px;margin:5px 0 2px}
@@ -465,7 +477,7 @@ function render(){
       <div id="fixtures"></div></div>
 
     <div class="sec"><div class="sechead"><span class="no">03</span><h2>The Knockout Line</h2>
-      <span class="note">A single network from thirty-two services down to one. Admin fills each junction as the group stage settles; predict the scorelines on the board above.</span></div>
+      <span class="note">A single network from thirty-two services down to one. Enter results and predictions straight on the tie cards — winners ride the line to the next junction automatically.</span></div>
       <div id="bracket"></div></div>
 
     <div class="sec"><div class="sechead"><span class="no">04</span><h2>The Drivers</h2>
@@ -525,21 +537,19 @@ function renderPlatforms(){
 }
 
 function renderFilters(){
-  const defs=[["remaining","Remaining"],["mine","Needs my pick"],["all","All fixtures"],
-    ["group","Group stage"],["R32","R32"],["R16","R16"],["QF","QF"],["SF","SF"],["F","Final"]];
+  const defs=[["remaining","Remaining"],["mine","Needs my pick"],["all","All group fixtures"]];
   $("#filters").innerHTML = defs.map(([k,l])=>`<button class="chip ${FILTER===k?'on':''}" data-f="${k}">${l}</button>`).join("");
   const note = VIEW==='ADMIN'
-    ? 'Type real results in the green boxes — standings, scores and the bracket update instantly. Each fixture has a kick-off lock you can adjust.'
-    : 'Type your scoreline in the blue boxes; they lock at kick-off. Filtered to: '+(FILTER==='mine'?'fixtures still needing your pick':(FILTER==='remaining'?'every fixture without a result':FILTER));
+    ? 'Group stage — type real results in the green boxes; standings update instantly. Knockout results go straight on the bracket below.'
+    : 'Group stage — type your scoreline in the blue boxes; they lock at kick-off. Knockout predictions go on the bracket below.';
   $("#fixnote").textContent = note;
 }
 
 function passFilter(m){
-  if(FILTER==="all") return true;
+  if(m.stage!=="group") return false;      // knockout is entered on the bracket now
   if(FILTER==="remaining") return !realOf(m);
   if(FILTER==="mine") return isOpen(m) && !predOf(VIEW,m);
-  if(FILTER==="group") return m.stage==="group";
-  return m.stage===FILTER;
+  return true;                              // "all group fixtures"
 }
 function ptsClass(v){ return v===5?"x5":v===3?"x3":v===2?"x2":"x0"; }
 function koLabel(m){ const k=kickoffOf(m); if(!k) return ""; const d=new Date(k); if(isNaN(d)) return "";
@@ -610,14 +620,33 @@ function renderFixtures(){
   host.innerHTML = orderKeys.map(k=> `<div class="mdblock"><div class="mdh">${esc(k)} · ${blocks[k].length} fixtures</div>${blocks[k].map(fixtureRow).join("")}</div>`).join("");
 }
 
-/* knockout bracket visual */
+/* one slot row on a knockout tie: team + an inline score box (admin=result, player=prediction) */
+function brSlot(m, side, team, isWinner){
+  let inner;
+  if(team){
+    let sc;
+    if(VIEW==='ADMIN'){
+      const r=parse(realOf(m))||["",""]; const v=side==='h'?r[0]:r[1];
+      sc=`<input class="tie-sc res" data-mid="${m.id}" data-kind="res" data-side="${side}" type="number" min="0" max="29" value="${v}">`;
+    } else {
+      const open=isOpen(m); const p=parse(predOf(VIEW,m))||["",""]; const v=side==='h'?p[0]:p[1];
+      sc=`<input class="tie-sc" data-mid="${m.id}" data-kind="pred" data-side="${side}" type="number" min="0" max="29" value="${v}" ${open?'':'disabled'}>`;
+    }
+    inner=`<span class="cc">${esc(code(team))}</span><span class="bnm">${esc(team)}</span>${sc}`;
+  } else if(VIEW==='ADMIN'){
+    inner=`<input class="brteam" list="teamlist" placeholder="add team" data-mid="${m.id}" data-kind="ko" data-side="${side==='h'?'home':'away'}" value="">`;
+  } else {
+    inner=`<span class="bnm tbd">awaiting</span>`;
+  }
+  return `<div class="s ${isWinner?'win':''}"><span class="d"></span>${inner}</div>`;
+}
+/* knockout bracket — results & predictions are entered right here on the tree */
 function renderBracket(){
-  const colW=312,cardW=192,cardH=58,P=70,termW=236;
+  const colW=326,cardW=208,cardH=66,P=90,termW=240;
   const xs=[0,colW,2*colW,3*colW,4*colW], Hgt=16*P;
   const rsub=["16 ties · M73–88","8 ties · M89–96","4 ties · M97–100","2 ties · M101–102","M104 · terminus"];
   const rname=["Round of 32","Round of 16","Quarter-finals","Semi-finals","Final"];
   const cy=(r,j)=> (j+0.5)*(P*Math.pow(2,r));
-  const byId={}; D.matches.forEach(m=> byId[m.id]=m);
   const koByRound={R32:[],R16:[],QF:[],SF:[]};
   D.matches.forEach(m=>{ if( koByRound[m.stage]) koByRound[m.stage].push(m); });
   ["R32","R16","QF","SF"].forEach(k=> koByRound[k].sort((a,b)=>a.id-b.id));
@@ -625,26 +654,35 @@ function renderBracket(){
   let ties="", segs=[];
   stages.forEach((st,r)=>{ koByRound[st].forEach((m,j)=>{
     const x=xs[r], y=cy(r,j)-cardH/2; const [h,a]=teamsOf(m); const w=winnerOf(m);
-    const s=(t)=>`<div class="s ${t&&w===t?'win':''}"><span class="d"></span><span class="cc">${t?code(t):''}</span><span>${t?esc(t):'awaiting arrival'}</span></div>`;
-    ties += `<div class="tie" style="left:${x}px;top:${y.toFixed(0)}px;width:${cardW}px"><span class="tl">M${m.id}</span>${s(h)}${s(a)}</div>`;
+    const pr=parse(realOf(m)); let pens="";
+    if(VIEW==='ADMIN' && pr && pr[0]===pr[1] && h && a){
+      pens=`<div class="tie-pens">pens<button class="penbtn ${S.pens[m.id]==='home'?'on':''}" data-mid="${m.id}" data-kind="pen" data-side="home">${esc(code(h))}</button><button class="penbtn ${S.pens[m.id]==='away'?'on':''}" data-mid="${m.id}" data-kind="pen" data-side="away">${esc(code(a))}</button></div>`;
+    }
+    ties += `<div class="tie ${VIEW==='ADMIN'?'adm':''}" style="left:${x}px;top:${y.toFixed(0)}px;width:${cardW}px"><span class="tl">M${m.id}</span>${brSlot(m,'h',h,w===h)}${brSlot(m,'a',a,w===a)}${pens}</div>`;
     const px=xs[r+1], py=cy(r+1,j>>1), chx=x+cardW, chy=cy(r,j), mx=(chx+px)/2;
     segs.push([chx,chy,mx,chy],[mx,chy,mx,py],[mx,py,px,py]);
   }); });
   const fy=cy(4,0); const champ=champion();
-  const term=`<div class="koterm" style="left:${xs[4]}px;top:${(fy-66).toFixed(0)}px;width:${termW}px">
-     <div class="k">Final Destination</div><div class="trophy">🏆</div>
-     <div class="ch">${champ?esc(champ):'Champion'}</div>
-     <div class="plate">${champ?'arrives '+code(champ):'— awaiting arrivals —'}</div>
-     <div class="when">MetLife · 19 Jul 2026</div></div>`;
-  const tp=`<div class="tpmark" style="left:${xs[4]}px;top:${(fy+78).toFixed(0)}px;width:${termW}px">
-     <div class="k">M103 · Third-place play-off</div><div class="v">the two terminated semi-finalists</div></div>`;
+  const fin=mById(104); const [fh,fa]=teamsOf(fin); const fw=winnerOf(fin); const fpr=parse(realOf(fin));
+  let finPens="";
+  if(VIEW==='ADMIN' && fpr && fpr[0]===fpr[1] && fh && fa){
+    finPens=`<div class="tie-pens">pens<button class="penbtn ${S.pens[104]==='home'?'on':''}" data-mid="104" data-kind="pen" data-side="home">${esc(code(fh))}</button><button class="penbtn ${S.pens[104]==='away'?'on':''}" data-mid="104" data-kind="pen" data-side="away">${esc(code(fa))}</button></div>`;
+  }
+  const finBody = (fh||fa) ? `<div class="finslots">${brSlot(fin,'h',fh,fw===fh)}${brSlot(fin,'a',fa,fw===fa)}${finPens}</div>` : `<div class="plate">— awaiting arrivals —</div>`;
+  const term=`<div class="koterm" style="left:${xs[4]}px;top:${(fy-94).toFixed(0)}px;width:${termW}px">
+     <div class="k">Final · MetLife · 19 Jul</div><div class="trophy">🏆</div>
+     ${champ?`<div class="ch">${esc(champ)}</div><div class="when">Champion</div>`:finBody}</div>`;
+  const tpm=mById(103); const [th,ta]=teamsOf(tpm); const tw=winnerOf(tpm);
+  const tpBody = (th||ta) ? `<div class="finslots">${brSlot(tpm,'h',th,tw===th)}${brSlot(tpm,'a',ta,tw===ta)}</div>` : `<div class="v">the two terminated semi-finalists</div>`;
+  const tp=`<div class="tpmark" style="left:${xs[4]}px;top:${(fy+118).toFixed(0)}px;width:${termW}px">
+     <div class="k">M103 · Third-place play-off</div>${tpBody}</div>`;
   const heads = rname.map((n,r)=>`<div class="koh" style="left:${xs[r]}px;width:${r===4?termW:cardW}px"><span class="rn">${n}</span><span class="rs">${rsub[r]}</span></div>`).join("");
   const bw=xs[4]+termW;
   const svg = `<svg class="tracks" viewBox="0 0 ${bw} ${Hgt}" preserveAspectRatio="none">`+
     segs.map(s=>`<line x1="${s[0].toFixed(0)}" y1="${s[1].toFixed(0)}" x2="${s[2].toFixed(0)}" y2="${s[3].toFixed(0)}" stroke="rgba(140,166,222,.32)" stroke-width="1.5"/>`).join("")+`</svg>`;
   $("#bracket").innerHTML = `<div class="kowrap"><div class="koheads" style="width:${bw}px">${heads}</div>
     <div class="bracket" style="height:${Hgt}px;width:${bw}px">${svg}${ties}${tp}${term}</div>
-    <div class="kocap">${CH()} ${champ?'Champion locked in.':'Lines open as the group stage completes — set each junction’s teams in Admin mode, then predict scorelines on the board above.'}</div></div>`;
+    <div class="kocap">${CH()} ${champ?'Champion locked in.':(VIEW==='ADMIN'?'Hit “Seed knockout” once the groups finish, then type each result right on the tie — winners auto-advance down the line.':'Predict each tie right here once the teams arrive. Scores save automatically.')}</div></div>`;
 }
 
 function renderDrivers(){
@@ -684,14 +722,38 @@ let saveT=null;
 function commit(rerender){ save(); if(rerender) render(); }
 function toast(msg){ let t=$(".toast"); if(!t){ t=el(`<div class="toast"></div>`); document.body.appendChild(t);} t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),1600); }
 
-function setPredPart(p,mid,side,val){
-  const cur=parse((S.preds[p]||{})[mid])||["",""]; const idx=side==="h"?0:1; cur[idx]=val;
-  if(cur[0]!=="" && cur[1]!==""){ S.preds[p]=S.preds[p]||{}; S.preds[p][mid]=cur[0]+"-"+cur[1]; }
-  else { if(S.preds[p]) delete S.preds[p][mid]; }
-}
-function setResPart(mid,side,val){
-  const cur=parse(S.results[mid])||["",""]; cur[side==="h"?0:1]=val;
-  if(cur[0]!=="" && cur[1]!=="") S.results[mid]=cur[0]+"-"+cur[1]; else delete S.results[mid];
+let savedFlashT=0;
+function flashSaved(){ const n=Date.now(); if(n-savedFlashT<1300) return; savedFlashT=n; toast(SYNC.on?"Saved · synced":"Saved on this device"); }
+// Single commit path for every score box (group list + bracket), used on blur AND save-as-you-type.
+// live=true means the user may still be focused, so we skip rebuilds that would steal focus.
+function commitScore(t, live){
+  const mid=t.dataset.mid, kind=t.dataset.kind;
+  if(!mid || (kind!=="pred" && kind!=="res")) return;
+  const clampStr = x => x===""? "" : String(Math.max(0,Math.min(29,parseInt(x,10)||0)));
+  t.value = clampStr(t.value);
+  const hI=$(`input[data-mid="${mid}"][data-kind="${kind}"][data-side="h"]`);
+  const aI=$(`input[data-mid="${mid}"][data-kind="${kind}"][data-side="a"]`);
+  const hh=clampStr(hI?hI.value:""), aa=clampStr(aI?aI.value:"");
+  const value = (hh!=="" && aa!=="") ? hh+"-"+aa : "";
+  const m=mById(mid); const isKO = m && m.stage!=='group';
+  // Rebuild the surface that holds the inputs ONLY when the score is complete and focus is leaving,
+  // so the second box is never destroyed mid-entry (it lives on the bracket for KO, in the list for group).
+  if(kind==="pred"){
+    S.preds[VIEW]=S.preds[VIEW]||{};
+    const prev=S.preds[VIEW][mid]||""; if(prev===value && live) return;
+    if(value) S.preds[VIEW][mid]=value; else delete S.preds[VIEW][mid];
+    save(); pushField("preds."+VIEW, S.preds[VIEW]);
+    renderBoard(); if(!live && value && isKO) renderBracket();
+    if(prev!==value) flashSaved();
+  } else {
+    const prev=S.results[mid]||""; if(prev===value && live) return;
+    if(value) S.results[mid]=value; else delete S.results[mid];
+    if(isKO) recomputeKO();                 // advance winners before saving
+    save(); pushField("results", S.results); if(isKO) pushField("ko", S.ko);
+    renderBoard(); renderPlatforms(); renderDrivers();
+    if(!live && value){ if(isKO) renderBracket(); else renderFixtures(); }
+    if(prev!==value) flashSaved();
+  }
 }
 
 function bind(){
@@ -720,27 +782,15 @@ function bind(){
     if(kind==="kick"){ if(t.value) S.kickoff[mid]=t.value; else delete S.kickoff[mid]; save(); pushField("kickoff", S.kickoff); return; }
     if(kind==="ko"){ const k=S.ko[mid]=S.ko[mid]||{}; k[side]=t.value; save(); pushField("ko", S.ko); renderBracket();
       if(k.home && k.away) renderFixtures(); return; }
-    if(kind==="pred" || kind==="res"){
-      const clampStr = x => x===""? "" : String(Math.max(0,Math.min(29,parseInt(x,10)||0)));
-      t.value = clampStr(t.value);                 // read BOTH boxes from the DOM, not from stored state
-      const hI=$(`input[data-mid="${mid}"][data-kind="${kind}"][data-side="h"]`);
-      const aI=$(`input[data-mid="${mid}"][data-kind="${kind}"][data-side="a"]`);
-      const hh=clampStr(hI?hI.value:""), aa=clampStr(aI?aI.value:"");
-      const val = (hh!=="" && aa!=="") ? hh+"-"+aa : "";
-      if(kind==="pred"){
-        S.preds[VIEW]=S.preds[VIEW]||{}; if(val) S.preds[VIEW][mid]=val; else delete S.preds[VIEW][mid];
-        save(); pushField("preds."+VIEW, S.preds[VIEW]); renderBoard(); /* no list rebuild: keep focus */
-      } else {
-        if(val) S.results[mid]=val; else delete S.results[mid];
-        const m=mById(mid); const isKO = m && m.stage!=='group';
-        if(isKO) recomputeKO();          // advance winners before saving
-        save();
-        pushField("results", S.results); if(isKO) pushField("ko", S.ko);
-        renderBoard(); renderPlatforms(); renderBracket(); renderDrivers();
-        if(val) renderFixtures(); /* rebuild once result complete, to preserve focus */
-      }
-    }
+    if(kind==="pred" || kind==="res"){ commitScore(t, false); }   // blur / Tab / Enter → commit immediately
   });
+  // save-as-you-type: debounce so you can't lose an entry by closing the tab before blurring
+  let inpEl=null, inpT=null;
+  app.addEventListener("input", e=>{
+    const t=e.target; if(!t.dataset || (t.dataset.kind!=="pred" && t.dataset.kind!=="res")) return;
+    inpEl=t; clearTimeout(inpT); inpT=setTimeout(()=>{ commitScore(inpEl, true); }, 500);
+  });
+  window.addEventListener("beforeunload", ()=>{ if(inpT && inpEl){ clearTimeout(inpT); commitScore(inpEl, true); } });
 }
 
 function doExport(){
