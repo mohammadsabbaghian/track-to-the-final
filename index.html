@@ -162,6 +162,17 @@ h1.title em{font-style:normal;color:var(--royal-500)}
 .koteam{display:flex;gap:6px;align-items:center}
 .koteam input{width:100%;height:30px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:7px;color:#fff;padding:0 8px;font-family:var(--sans);font-size:12.5px}
 .koteam input:focus{outline:0;border-color:var(--royal-500)}
+.fend .pend.lock{color:var(--warn)}
+.fpreds.admeta{align-items:center;gap:18px;color:var(--mut2)}
+.kolabel{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
+.koin{height:28px;background:rgba(0,0,0,.3);border:1px solid var(--line-2);border-radius:6px;color:var(--txt);
+ font-family:var(--sans);font-size:12px;padding:0 7px;color-scheme:dark}
+.koin:focus{outline:0;border-color:var(--royal-500)}
+.penbox{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:var(--mut)}
+.penbtn{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--txt);background:rgba(255,255,255,.06);
+ border:1px solid var(--line-2);border-radius:6px;padding:4px 9px;cursor:pointer}
+.penbtn:hover{background:rgba(255,255,255,.12)}
+.penbtn.on{background:var(--royal);border-color:var(--royal);color:#fff}
 
 /* knockout bracket */
 .koheads{position:relative;height:40px;margin:6px auto 14px}
@@ -236,7 +247,7 @@ h1.title em{font-style:normal;color:var(--royal-500)}
 <script>/* Vireo World Cup 2026 — The Track to the Final : prediction game engine */
 (function(){
 "use strict";
-const D = {"matches": [{"id": 1, "stage": "group", "grp": "A", "md": 1, "home": "Mexico", "away": "South Africa"}, {"id": 2, "stage": "group", "grp": "A", "md": 1, "home": "South Korea", "away": "Czechia"}, {"id": 3, "stage": "group", "grp": "B", "md": 1, "home": "Canada", "away": "Bosnia and Herzegovina"}, {"id": 4, "stage": "group", "grp": "D", "md": 1, "home": "United States", "away": "Paraguay"}, {"id": 5, "stage": "group", "grp": "B", "md": 1, "home": "Qatar", "away": "Switzerland"}, {"id": 6, "stage": "group", "grp": "C", "md": 1, "home": "Brazil", "away": "Morocco"}, {"id": 7, "stage": "group", "grp": "C", "md": 1, "home": "Haiti", "away": "Scotland"}, {"id": 8, "stage": "group", "grp": "D", "md": 1, "home": "Australia", "away": "T\u00fcrkiye"}, {"id": 9, "stage": "group", "grp": "E", "md": 1, "home": "Germany", "away": "Cura\u00e7ao"}, {"id": 10, "stage": "group", "grp": "F", "md": 1, "home": "Netherlands", "away": "Japan"}, {"id": 11, "stage": "group", "grp": "E", "md": 1, "home": "Ivory Coast", "away": "Ecuador"}, {"id": 12, "stage": "group", "grp": "F", "md": 1, "home": "Sweden", "away": "Tunisia"}, {"id": 13, "stage": "group", "grp": "H", "md": 1, "home": "Spain", "away": "Cape Verde"}, {"id": 14, "stage": "group", "grp": "G", "md": 1, "home": "Belgium", "away": "Egypt"}, {"id": 15, "stage": "group", "grp": "H", "md": 1, "home": "Saudi Arabia", "away": "Uruguay"}, {"id": 16, "stage": "group", "grp": "G", "md": 1, "home": "Iran", "away": "New Zealand"}, {"id": 17, "stage": "group", "grp": "I", "md": 1, "home": "France", "away": "Senegal"}, {"id": 18, "stage": "group", "grp": "I", "md": 1, "home": "Iraq", "away": "Norway"}, {"id": 19, "stage": "group", "grp": "J", "md": 1, "home": "Argentina", "away": "Algeria"}, {"id": 20, "stage": "group", "grp": "J", "md": 1, "home": "Austria", "away": "Jordan"}, {"id": 21, "stage": "group", "grp": "K", "md": 1, "home": "Portugal", "away": "DR Congo"}, {"id": 22, "stage": "group", "grp": "L", "md": 1, "home": "England", "away": "Croatia"}, {"id": 23, "stage": "group", "grp": "L", "md": 1, "home": "Ghana", "away": "Panama"}, {"id": 24, "stage": "group", "grp": "K", "md": 1, "home": "Uzbekistan", "away": "Colombia"}, {"id": 25, "stage": "group", "grp": "A", "md": 2, "home": "Czechia", "away": "South Africa"}, {"id": 26, "stage": "group", "grp": "B", "md": 2, "home": "Switzerland", "away": "Bosnia and Herzegovina"}, {"id": 27, "stage": "group", "grp": "B", "md": 2, "home": "Canada", "away": "Qatar"}, {"id": 28, "stage": "group", "grp": "A", "md": 2, "home": "Mexico", "away": "South Korea"}, {"id": 29, "stage": "group", "grp": "D", "md": 2, "home": "United States", "away": "Australia"}, {"id": 30, "stage": "group", "grp": "C", "md": 2, "home": "Scotland", "away": "Morocco"}, {"id": 31, "stage": "group", "grp": "C", "md": 2, "home": "Brazil", "away": "Haiti"}, {"id": 32, "stage": "group", "grp": "D", "md": 2, "home": "T\u00fcrkiye", "away": "Paraguay"}, {"id": 33, "stage": "group", "grp": "F", "md": 2, "home": "Netherlands", "away": "Sweden"}, {"id": 34, "stage": "group", "grp": "E", "md": 2, "home": "Germany", "away": "Ivory Coast"}, {"id": 35, "stage": "group", "grp": "E", "md": 2, "home": "Ecuador", "away": "Cura\u00e7ao"}, {"id": 36, "stage": "group", "grp": "F", "md": 2, "home": "Tunisia", "away": "Japan"}, {"id": 37, "stage": "group", "grp": "H", "md": 2, "home": "Spain", "away": "Saudi Arabia"}, {"id": 38, "stage": "group", "grp": "G", "md": 2, "home": "Belgium", "away": "Iran"}, {"id": 39, "stage": "group", "grp": "H", "md": 2, "home": "Uruguay", "away": "Cape Verde"}, {"id": 40, "stage": "group", "grp": "G", "md": 2, "home": "New Zealand", "away": "Egypt"}, {"id": 41, "stage": "group", "grp": "J", "md": 2, "home": "Argentina", "away": "Austria"}, {"id": 42, "stage": "group", "grp": "I", "md": 2, "home": "France", "away": "Iraq"}, {"id": 43, "stage": "group", "grp": "I", "md": 2, "home": "Norway", "away": "Senegal"}, {"id": 44, "stage": "group", "grp": "J", "md": 2, "home": "Jordan", "away": "Algeria"}, {"id": 45, "stage": "group", "grp": "K", "md": 2, "home": "Portugal", "away": "Uzbekistan"}, {"id": 46, "stage": "group", "grp": "L", "md": 2, "home": "England", "away": "Ghana"}, {"id": 47, "stage": "group", "grp": "L", "md": 2, "home": "Panama", "away": "Croatia"}, {"id": 48, "stage": "group", "grp": "K", "md": 2, "home": "Colombia", "away": "DR Congo"}, {"id": 49, "stage": "group", "grp": "B", "md": 3, "home": "Switzerland", "away": "Canada"}, {"id": 50, "stage": "group", "grp": "B", "md": 3, "home": "Bosnia and Herzegovina", "away": "Qatar"}, {"id": 51, "stage": "group", "grp": "C", "md": 3, "home": "Scotland", "away": "Brazil"}, {"id": 52, "stage": "group", "grp": "C", "md": 3, "home": "Morocco", "away": "Haiti"}, {"id": 53, "stage": "group", "grp": "A", "md": 3, "home": "Czechia", "away": "Mexico"}, {"id": 54, "stage": "group", "grp": "A", "md": 3, "home": "South Africa", "away": "South Korea"}, {"id": 55, "stage": "group", "grp": "E", "md": 3, "home": "Ecuador", "away": "Germany"}, {"id": 56, "stage": "group", "grp": "E", "md": 3, "home": "Cura\u00e7ao", "away": "Ivory Coast"}, {"id": 57, "stage": "group", "grp": "F", "md": 3, "home": "Japan", "away": "Sweden"}, {"id": 58, "stage": "group", "grp": "F", "md": 3, "home": "Tunisia", "away": "Netherlands"}, {"id": 59, "stage": "group", "grp": "D", "md": 3, "home": "T\u00fcrkiye", "away": "United States"}, {"id": 60, "stage": "group", "grp": "D", "md": 3, "home": "Paraguay", "away": "Australia"}, {"id": 61, "stage": "group", "grp": "I", "md": 3, "home": "Norway", "away": "France"}, {"id": 62, "stage": "group", "grp": "I", "md": 3, "home": "Senegal", "away": "Iraq"}, {"id": 63, "stage": "group", "grp": "H", "md": 3, "home": "Cape Verde", "away": "Saudi Arabia"}, {"id": 64, "stage": "group", "grp": "H", "md": 3, "home": "Uruguay", "away": "Spain"}, {"id": 65, "stage": "group", "grp": "G", "md": 3, "home": "Egypt", "away": "Iran"}, {"id": 66, "stage": "group", "grp": "G", "md": 3, "home": "New Zealand", "away": "Belgium"}, {"id": 67, "stage": "group", "grp": "L", "md": 3, "home": "Panama", "away": "England"}, {"id": 68, "stage": "group", "grp": "L", "md": 3, "home": "Croatia", "away": "Ghana"}, {"id": 69, "stage": "group", "grp": "K", "md": 3, "home": "Colombia", "away": "Portugal"}, {"id": 70, "stage": "group", "grp": "K", "md": 3, "home": "DR Congo", "away": "Uzbekistan"}, {"id": 71, "stage": "group", "grp": "J", "md": 3, "home": "Algeria", "away": "Austria"}, {"id": 72, "stage": "group", "grp": "J", "md": 3, "home": "Jordan", "away": "Argentina"}, {"id": 73, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 74, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 75, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 76, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 77, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 78, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 79, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 80, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 81, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 82, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 83, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 84, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 85, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 86, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 87, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 88, "stage": "R32", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 89, "stage": "R16", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 90, "stage": "R16", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 91, "stage": "R16", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 92, "stage": "R16", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 93, "stage": "R16", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 94, "stage": "R16", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 95, "stage": "R16", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 96, "stage": "R16", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 97, "stage": "QF", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 98, "stage": "QF", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 99, "stage": "QF", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 100, "stage": "QF", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 101, "stage": "SF", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 102, "stage": "SF", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 103, "stage": "P3", "grp": "", "md": 0, "home": "", "away": ""}, {"id": 104, "stage": "F", "grp": "", "md": 0, "home": "", "away": ""}], "code": {"Mexico": "MEX", "South Africa": "RSA", "South Korea": "KOR", "Czechia": "CZE", "Canada": "CAN", "Bosnia and Herzegovina": "BIH", "Qatar": "QAT", "Switzerland": "SUI", "Brazil": "BRA", "Morocco": "MAR", "Haiti": "HAI", "Scotland": "SCO", "United States": "USA", "Paraguay": "PAR", "Australia": "AUS", "T\u00fcrkiye": "TUR", "Germany": "GER", "Cura\u00e7ao": "CUW", "Ivory Coast": "CIV", "Ecuador": "ECU", "Netherlands": "NED", "Japan": "JPN", "Sweden": "SWE", "Tunisia": "TUN", "Belgium": "BEL", "Egypt": "EGY", "Iran": "IRN", "New Zealand": "NZL", "Spain": "ESP", "Cape Verde": "CPV", "Saudi Arabia": "KSA", "Uruguay": "URU", "France": "FRA", "Senegal": "SEN", "Iraq": "IRQ", "Norway": "NOR", "Argentina": "ARG", "Algeria": "ALG", "Austria": "AUT", "Jordan": "JOR", "Portugal": "POR", "DR Congo": "COD", "Uzbekistan": "UZB", "Colombia": "COL", "England": "ENG", "Croatia": "CRO", "Ghana": "GHA", "Panama": "PAN"}, "ranks": {"Argentina": 1, "Spain": 2, "France": 3, "England": 4, "Brazil": 5, "Portugal": 6, "Netherlands": 7, "Belgium": 8, "Germany": 9, "Croatia": 10, "Morocco": 11, "Colombia": 12, "Uruguay": 13, "Japan": 14, "United States": 15, "Mexico": 16, "Switzerland": 17, "Senegal": 18, "Iran": 19, "Austria": 20, "South Korea": 21, "Ecuador": 22, "Australia": 23, "Canada": 24, "Egypt": 25, "T\u00fcrkiye": 26, "Sweden": 27, "Norway": 28, "Panama": 29, "Scotland": 30, "Czechia": 31, "Paraguay": 32, "Ivory Coast": 33, "Tunisia": 34, "Algeria": 35, "Qatar": 36, "Saudi Arabia": 37, "South Africa": 38, "DR Congo": 39, "Iraq": 40, "Uzbekistan": 41, "Jordan": 42, "Bosnia and Herzegovina": 43, "Ghana": 44, "Cape Verde": 45, "New Zealand": 46, "Cura\u00e7ao": 47, "Haiti": 48}, "players": ["Mo", "Thea", "Lucas", "Jan"], "teams": ["Algeria", "Argentina", "Australia", "Austria", "Belgium", "Bosnia and Herzegovina", "Brazil", "Canada", "Cape Verde", "Colombia", "Croatia", "Cura\u00e7ao", "Czechia", "DR Congo", "Ecuador", "Egypt", "England", "France", "Germany", "Ghana", "Haiti", "Iran", "Iraq", "Ivory Coast", "Japan", "Jordan", "Mexico", "Morocco", "Netherlands", "New Zealand", "Norway", "Panama", "Paraguay", "Portugal", "Qatar", "Saudi Arabia", "Scotland", "Senegal", "South Africa", "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", "T\u00fcrkiye", "United States", "Uruguay", "Uzbekistan"], "results0": {"1": "2-0", "2": "2-1", "3": "1-1", "4": "4-1", "5": "1-1", "6": "1-1", "7": "0-1", "8": "2-0", "9": "7-1", "10": "2-2", "11": "1-0", "12": "5-1", "13": "0-0", "14": "1-1", "15": "1-1", "16": "2-2", "17": "3-1", "18": "1-4", "19": "3-0", "20": "3-1", "21": "1-1", "22": "4-2", "23": "1-0", "24": "1-3", "25": "1-1", "26": "4-1", "27": "6-0", "28": "1-0", "29": "2-0", "30": "0-1", "31": "3-0", "32": "0-1"}, "bonus0": {"Mo": {"champion": "France", "underdog": "Iran"}, "Thea": {"champion": "France", "underdog": "Egypt"}, "Lucas": {"champion": "Argentina", "underdog": "Mexico"}, "Jan": {"champion": "Germany", "underdog": "Ivory Coast"}}, "cfg": {"exact": 5, "gd": 3, "out": 2, "champ": 10, "udTiers": [[10, 0], [20, 1], [32, 2], [42, 3], [99, 4]]}};
+const D = {"matches": [{"id": 1, "stage": "group", "grp": "A", "md": 1, "home": "Mexico", "away": "South Africa", "date": ""}, {"id": 2, "stage": "group", "grp": "A", "md": 1, "home": "South Korea", "away": "Czechia", "date": ""}, {"id": 3, "stage": "group", "grp": "B", "md": 1, "home": "Canada", "away": "Bosnia and Herzegovina", "date": ""}, {"id": 4, "stage": "group", "grp": "D", "md": 1, "home": "United States", "away": "Paraguay", "date": ""}, {"id": 5, "stage": "group", "grp": "B", "md": 1, "home": "Qatar", "away": "Switzerland", "date": ""}, {"id": 6, "stage": "group", "grp": "C", "md": 1, "home": "Brazil", "away": "Morocco", "date": ""}, {"id": 7, "stage": "group", "grp": "C", "md": 1, "home": "Haiti", "away": "Scotland", "date": ""}, {"id": 8, "stage": "group", "grp": "D", "md": 1, "home": "Australia", "away": "T\u00fcrkiye", "date": ""}, {"id": 9, "stage": "group", "grp": "E", "md": 1, "home": "Germany", "away": "Cura\u00e7ao", "date": ""}, {"id": 10, "stage": "group", "grp": "F", "md": 1, "home": "Netherlands", "away": "Japan", "date": ""}, {"id": 11, "stage": "group", "grp": "E", "md": 1, "home": "Ivory Coast", "away": "Ecuador", "date": ""}, {"id": 12, "stage": "group", "grp": "F", "md": 1, "home": "Sweden", "away": "Tunisia", "date": ""}, {"id": 13, "stage": "group", "grp": "H", "md": 1, "home": "Spain", "away": "Cape Verde", "date": ""}, {"id": 14, "stage": "group", "grp": "G", "md": 1, "home": "Belgium", "away": "Egypt", "date": ""}, {"id": 15, "stage": "group", "grp": "H", "md": 1, "home": "Saudi Arabia", "away": "Uruguay", "date": ""}, {"id": 16, "stage": "group", "grp": "G", "md": 1, "home": "Iran", "away": "New Zealand", "date": ""}, {"id": 17, "stage": "group", "grp": "I", "md": 1, "home": "France", "away": "Senegal", "date": ""}, {"id": 18, "stage": "group", "grp": "I", "md": 1, "home": "Iraq", "away": "Norway", "date": ""}, {"id": 19, "stage": "group", "grp": "J", "md": 1, "home": "Argentina", "away": "Algeria", "date": ""}, {"id": 20, "stage": "group", "grp": "J", "md": 1, "home": "Austria", "away": "Jordan", "date": ""}, {"id": 21, "stage": "group", "grp": "K", "md": 1, "home": "Portugal", "away": "DR Congo", "date": ""}, {"id": 22, "stage": "group", "grp": "L", "md": 1, "home": "England", "away": "Croatia", "date": ""}, {"id": 23, "stage": "group", "grp": "L", "md": 1, "home": "Ghana", "away": "Panama", "date": ""}, {"id": 24, "stage": "group", "grp": "K", "md": 1, "home": "Uzbekistan", "away": "Colombia", "date": ""}, {"id": 25, "stage": "group", "grp": "A", "md": 2, "home": "Czechia", "away": "South Africa", "date": ""}, {"id": 26, "stage": "group", "grp": "B", "md": 2, "home": "Switzerland", "away": "Bosnia and Herzegovina", "date": ""}, {"id": 27, "stage": "group", "grp": "B", "md": 2, "home": "Canada", "away": "Qatar", "date": ""}, {"id": 28, "stage": "group", "grp": "A", "md": 2, "home": "Mexico", "away": "South Korea", "date": ""}, {"id": 29, "stage": "group", "grp": "D", "md": 2, "home": "United States", "away": "Australia", "date": ""}, {"id": 30, "stage": "group", "grp": "C", "md": 2, "home": "Scotland", "away": "Morocco", "date": ""}, {"id": 31, "stage": "group", "grp": "C", "md": 2, "home": "Brazil", "away": "Haiti", "date": ""}, {"id": 32, "stage": "group", "grp": "D", "md": 2, "home": "T\u00fcrkiye", "away": "Paraguay", "date": ""}, {"id": 33, "stage": "group", "grp": "F", "md": 2, "home": "Netherlands", "away": "Sweden", "date": "2026-06-20"}, {"id": 34, "stage": "group", "grp": "E", "md": 2, "home": "Germany", "away": "Ivory Coast", "date": "2026-06-20"}, {"id": 35, "stage": "group", "grp": "E", "md": 2, "home": "Ecuador", "away": "Cura\u00e7ao", "date": "2026-06-20"}, {"id": 36, "stage": "group", "grp": "F", "md": 2, "home": "Tunisia", "away": "Japan", "date": "2026-06-20"}, {"id": 37, "stage": "group", "grp": "H", "md": 2, "home": "Spain", "away": "Saudi Arabia", "date": "2026-06-21"}, {"id": 38, "stage": "group", "grp": "G", "md": 2, "home": "Belgium", "away": "Iran", "date": "2026-06-21"}, {"id": 39, "stage": "group", "grp": "H", "md": 2, "home": "Uruguay", "away": "Cape Verde", "date": "2026-06-21"}, {"id": 40, "stage": "group", "grp": "G", "md": 2, "home": "New Zealand", "away": "Egypt", "date": "2026-06-21"}, {"id": 41, "stage": "group", "grp": "J", "md": 2, "home": "Argentina", "away": "Austria", "date": "2026-06-22"}, {"id": 42, "stage": "group", "grp": "I", "md": 2, "home": "France", "away": "Iraq", "date": "2026-06-22"}, {"id": 43, "stage": "group", "grp": "I", "md": 2, "home": "Norway", "away": "Senegal", "date": "2026-06-22"}, {"id": 44, "stage": "group", "grp": "J", "md": 2, "home": "Jordan", "away": "Algeria", "date": "2026-06-22"}, {"id": 45, "stage": "group", "grp": "K", "md": 2, "home": "Portugal", "away": "Uzbekistan", "date": "2026-06-23"}, {"id": 46, "stage": "group", "grp": "L", "md": 2, "home": "England", "away": "Ghana", "date": "2026-06-23"}, {"id": 47, "stage": "group", "grp": "L", "md": 2, "home": "Panama", "away": "Croatia", "date": "2026-06-23"}, {"id": 48, "stage": "group", "grp": "K", "md": 2, "home": "Colombia", "away": "DR Congo", "date": "2026-06-23"}, {"id": 49, "stage": "group", "grp": "B", "md": 3, "home": "Switzerland", "away": "Canada", "date": "2026-06-24"}, {"id": 50, "stage": "group", "grp": "B", "md": 3, "home": "Bosnia and Herzegovina", "away": "Qatar", "date": "2026-06-24"}, {"id": 51, "stage": "group", "grp": "C", "md": 3, "home": "Scotland", "away": "Brazil", "date": "2026-06-24"}, {"id": 52, "stage": "group", "grp": "C", "md": 3, "home": "Morocco", "away": "Haiti", "date": "2026-06-24"}, {"id": 53, "stage": "group", "grp": "A", "md": 3, "home": "Czechia", "away": "Mexico", "date": "2026-06-24"}, {"id": 54, "stage": "group", "grp": "A", "md": 3, "home": "South Africa", "away": "South Korea", "date": "2026-06-24"}, {"id": 55, "stage": "group", "grp": "E", "md": 3, "home": "Ecuador", "away": "Germany", "date": "2026-06-25"}, {"id": 56, "stage": "group", "grp": "E", "md": 3, "home": "Cura\u00e7ao", "away": "Ivory Coast", "date": "2026-06-25"}, {"id": 57, "stage": "group", "grp": "F", "md": 3, "home": "Japan", "away": "Sweden", "date": "2026-06-25"}, {"id": 58, "stage": "group", "grp": "F", "md": 3, "home": "Tunisia", "away": "Netherlands", "date": "2026-06-25"}, {"id": 59, "stage": "group", "grp": "D", "md": 3, "home": "T\u00fcrkiye", "away": "United States", "date": "2026-06-25"}, {"id": 60, "stage": "group", "grp": "D", "md": 3, "home": "Paraguay", "away": "Australia", "date": "2026-06-25"}, {"id": 61, "stage": "group", "grp": "I", "md": 3, "home": "Norway", "away": "France", "date": "2026-06-26"}, {"id": 62, "stage": "group", "grp": "I", "md": 3, "home": "Senegal", "away": "Iraq", "date": "2026-06-26"}, {"id": 63, "stage": "group", "grp": "H", "md": 3, "home": "Cape Verde", "away": "Saudi Arabia", "date": "2026-06-26"}, {"id": 64, "stage": "group", "grp": "H", "md": 3, "home": "Uruguay", "away": "Spain", "date": "2026-06-26"}, {"id": 65, "stage": "group", "grp": "G", "md": 3, "home": "Egypt", "away": "Iran", "date": "2026-06-26"}, {"id": 66, "stage": "group", "grp": "G", "md": 3, "home": "New Zealand", "away": "Belgium", "date": "2026-06-26"}, {"id": 67, "stage": "group", "grp": "L", "md": 3, "home": "Panama", "away": "England", "date": "2026-06-27"}, {"id": 68, "stage": "group", "grp": "L", "md": 3, "home": "Croatia", "away": "Ghana", "date": "2026-06-27"}, {"id": 69, "stage": "group", "grp": "K", "md": 3, "home": "Colombia", "away": "Portugal", "date": "2026-06-27"}, {"id": 70, "stage": "group", "grp": "K", "md": 3, "home": "DR Congo", "away": "Uzbekistan", "date": "2026-06-27"}, {"id": 71, "stage": "group", "grp": "J", "md": 3, "home": "Algeria", "away": "Austria", "date": "2026-06-27"}, {"id": 72, "stage": "group", "grp": "J", "md": 3, "home": "Jordan", "away": "Argentina", "date": "2026-06-27"}, {"id": 73, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 74, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 75, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 76, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 77, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 78, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 79, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 80, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 81, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 82, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 83, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 84, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 85, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 86, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 87, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 88, "stage": "R32", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 89, "stage": "R16", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 90, "stage": "R16", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 91, "stage": "R16", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 92, "stage": "R16", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 93, "stage": "R16", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 94, "stage": "R16", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 95, "stage": "R16", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 96, "stage": "R16", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 97, "stage": "QF", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 98, "stage": "QF", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 99, "stage": "QF", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 100, "stage": "QF", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 101, "stage": "SF", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 102, "stage": "SF", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 103, "stage": "P3", "grp": "", "md": 0, "home": "", "away": "", "date": ""}, {"id": 104, "stage": "F", "grp": "", "md": 0, "home": "", "away": "", "date": ""}], "code": {"Mexico": "MEX", "South Africa": "RSA", "South Korea": "KOR", "Czechia": "CZE", "Canada": "CAN", "Bosnia and Herzegovina": "BIH", "Qatar": "QAT", "Switzerland": "SUI", "Brazil": "BRA", "Morocco": "MAR", "Haiti": "HAI", "Scotland": "SCO", "United States": "USA", "Paraguay": "PAR", "Australia": "AUS", "T\u00fcrkiye": "TUR", "Germany": "GER", "Cura\u00e7ao": "CUW", "Ivory Coast": "CIV", "Ecuador": "ECU", "Netherlands": "NED", "Japan": "JPN", "Sweden": "SWE", "Tunisia": "TUN", "Belgium": "BEL", "Egypt": "EGY", "Iran": "IRN", "New Zealand": "NZL", "Spain": "ESP", "Cape Verde": "CPV", "Saudi Arabia": "KSA", "Uruguay": "URU", "France": "FRA", "Senegal": "SEN", "Iraq": "IRQ", "Norway": "NOR", "Argentina": "ARG", "Algeria": "ALG", "Austria": "AUT", "Jordan": "JOR", "Portugal": "POR", "DR Congo": "COD", "Uzbekistan": "UZB", "Colombia": "COL", "England": "ENG", "Croatia": "CRO", "Ghana": "GHA", "Panama": "PAN"}, "ranks": {"Argentina": 1, "Spain": 2, "France": 3, "England": 4, "Brazil": 5, "Portugal": 6, "Netherlands": 7, "Belgium": 8, "Germany": 9, "Croatia": 10, "Morocco": 11, "Colombia": 12, "Uruguay": 13, "Japan": 14, "United States": 15, "Mexico": 16, "Switzerland": 17, "Senegal": 18, "Iran": 19, "Austria": 20, "South Korea": 21, "Ecuador": 22, "Australia": 23, "Canada": 24, "Egypt": 25, "T\u00fcrkiye": 26, "Sweden": 27, "Norway": 28, "Panama": 29, "Scotland": 30, "Czechia": 31, "Paraguay": 32, "Ivory Coast": 33, "Tunisia": 34, "Algeria": 35, "Qatar": 36, "Saudi Arabia": 37, "South Africa": 38, "DR Congo": 39, "Iraq": 40, "Uzbekistan": 41, "Jordan": 42, "Bosnia and Herzegovina": 43, "Ghana": 44, "Cape Verde": 45, "New Zealand": 46, "Cura\u00e7ao": 47, "Haiti": 48}, "players": ["Mo", "Thea", "Lucas", "Jan"], "teams": ["Algeria", "Argentina", "Australia", "Austria", "Belgium", "Bosnia and Herzegovina", "Brazil", "Canada", "Cape Verde", "Colombia", "Croatia", "Cura\u00e7ao", "Czechia", "DR Congo", "Ecuador", "Egypt", "England", "France", "Germany", "Ghana", "Haiti", "Iran", "Iraq", "Ivory Coast", "Japan", "Jordan", "Mexico", "Morocco", "Netherlands", "New Zealand", "Norway", "Panama", "Paraguay", "Portugal", "Qatar", "Saudi Arabia", "Scotland", "Senegal", "South Africa", "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", "T\u00fcrkiye", "United States", "Uruguay", "Uzbekistan"], "results0": {"1": "2-0", "2": "2-1", "3": "1-1", "4": "4-1", "5": "1-1", "6": "1-1", "7": "0-1", "8": "2-0", "9": "7-1", "10": "2-2", "11": "1-0", "12": "5-1", "13": "0-0", "14": "1-1", "15": "1-1", "16": "2-2", "17": "3-1", "18": "1-4", "19": "3-0", "20": "3-1", "21": "1-1", "22": "4-2", "23": "1-0", "24": "1-3", "25": "1-1", "26": "4-1", "27": "6-0", "28": "1-0", "29": "2-0", "30": "0-1", "31": "3-0", "32": "0-1"}, "bonus0": {"Mo": {"champion": "France", "underdog": "Iran"}, "Thea": {"champion": "France", "underdog": "Egypt"}, "Lucas": {"champion": "Argentina", "underdog": "Mexico"}, "Jan": {"champion": "Germany", "underdog": "Ivory Coast"}}, "preds0": {"Mo": {"29": "1-2", "30": "0-3", "31": "3-0", "32": "2-0"}, "Thea": {"29": "1-1", "30": "1-3", "31": "2-0", "32": "1-0"}, "Lucas": {"29": "2-2", "30": "2-1", "31": "4-0", "32": "2-0"}, "Jan": {"29": "2-1", "30": "0-3", "31": "1-0", "32": "2-0"}}, "cfg": {"exact": 5, "gd": 3, "out": 2, "champ": 10, "udTiers": [[10, 0], [20, 1], [32, 2], [42, 3], [99, 4]]}};
 const LS = "vireo_wc2026_v2";
 const $  = (s,r)=> (r||document).querySelector(s);
 const WM = ()=> $("#tpl-wm").innerHTML;
@@ -248,16 +259,16 @@ const KO_ORDER = ["R32","R16","QF","SF","P3","F"];
 
 /* ---------------- state ---------------- */
 function defState(){
-  const s = {results:{}, preds:{}, bonus:{}, ko:{}, ranks:Object.assign({},D.ranks), cfg:Object.assign({},D.cfg), startId:33};
-  D.players.forEach(p=>{ s.preds[p]={}; const b=D.bonus0[p]||{}; s.bonus[p]={champion:b.champion||"",underdog:b.underdog||""}; });
+  const s = {results:{}, preds:{}, bonus:{}, ko:{}, pens:{}, kickoff:{}, ranks:Object.assign({},D.ranks), cfg:Object.assign({},D.cfg)};
+  D.players.forEach(p=>{ s.preds[p]=Object.assign({}, (D.preds0&&D.preds0[p])||{}); const b=D.bonus0[p]||{}; s.bonus[p]={champion:b.champion||"",underdog:b.underdog||""}; });
   Object.assign(s.results, D.results0);
+  D.matches.forEach(m=>{ if(m.date) s.kickoff[m.id]=m.date+"T18:00"; });  // default KO time, editable in Admin
   return s;
 }
 function migrate(r){
   r.ranks = r.ranks||Object.assign({},D.ranks);
   r.cfg   = Object.assign({},D.cfg,r.cfg||{});
-  r.results=r.results||{}; r.ko=r.ko||{}; r.preds=r.preds||{}; r.bonus=r.bonus||{};
-  if(r.startId==null) r.startId=33;
+  r.results=r.results||{}; r.ko=r.ko||{}; r.preds=r.preds||{}; r.bonus=r.bonus||{}; r.pens=r.pens||{}; r.kickoff=r.kickoff||{};
   D.players.forEach(p=>{ r.preds[p]=r.preds[p]||{}; r.bonus[p]=r.bonus[p]||{champion:"",underdog:""}; });
   return r;
 }
@@ -276,8 +287,8 @@ function setStatus(st){ SYNC.status=st; const p=document.querySelector("#syncpil
   const t={connected:"Shared sync live",connecting:"Connecting…",error:"Sync off · local only",local:"This device only"}[st]||st;
   const tx=p.querySelector(".txt"); if(tx) tx.textContent=t;
 }
-function serialize(st){ return {results:st.results||{}, ko:st.ko||{}, ranks:st.ranks||{}, cfg:st.cfg||{},
-  startId:st.startId||33, preds:st.preds||{}, bonus:st.bonus||{}, _ts:stamp()}; }
+function serialize(st){ return {results:st.results||{}, ko:st.ko||{}, pens:st.pens||{}, kickoff:st.kickoff||{},
+  ranks:st.ranks||{}, cfg:st.cfg||{}, preds:st.preds||{}, bonus:st.bonus||{}, _ts:stamp()}; }
 async function initSync(){
   const cfg = window.FIREBASE_CONFIG;
   if(!cfg || !cfg.apiKey || String(cfg.apiKey).indexOf("PASTE")>=0 || !window.firebase){ setStatus("local"); return; }
@@ -296,7 +307,7 @@ async function initSync(){
 function applyRemote(d){
   if(d._ts && d._ts===SYNC.ts) return;            // ignore our own write echoing back
   SYNC.ts = d._ts||SYNC.ts; SYNC.applying=true;
-  S.results=d.results||{}; S.ko=d.ko||{}; if(d.ranks) S.ranks=d.ranks; S.cfg=Object.assign(S.cfg,d.cfg||{}); if(d.startId) S.startId=d.startId;
+  S.results=d.results||{}; S.ko=d.ko||{}; S.pens=d.pens||{}; if(d.kickoff) S.kickoff=d.kickoff; if(d.ranks) S.ranks=d.ranks; S.cfg=Object.assign(S.cfg,d.cfg||{});
   D.players.forEach(p=>{ S.preds[p]=(d.preds&&d.preds[p])||{}; S.bonus[p]=(d.bonus&&d.bonus[p])||{champion:"",underdog:""}; });
   save(); SYNC.applying=false;
   const ae=document.activeElement;
@@ -315,10 +326,12 @@ function teamsOf(m){ if(m.stage==="group") return [m.home,m.away]; const k=S.ko[
 function realOf(m){ return S.results[m.id]||""; }
 function predOf(p,m){ return (S.preds[p]||{})[m.id]||""; }
 function parse(s){ if(!s) return null; const m=String(s).trim().match(/^(\d+)\s*[-:]\s*(\d+)$/); return m? [(+m[1]),(+m[2])] : null; }
-function isOpen(m){ // prediction editable if no real result yet and (group: id>=startId) and teams known
+function kickoffOf(m){ return S.kickoff[m.id]||""; }
+function lockedByTime(m){ const k=kickoffOf(m); return !!k && Date.now() >= new Date(k).getTime(); }
+function isOpen(m){ // editable only before kick-off, while no result, and once teams are known
   if(realOf(m)) return false;
   const [h,a]=teamsOf(m); if(!h||!a) return false;
-  if(m.stage==="group" && m.id < S.startId) return false;
+  if(lockedByTime(m)) return false;
   return true;
 }
 function scoreOne(pred,real){
@@ -329,7 +342,47 @@ function scoreOne(pred,real){
   if(sp===so) return S.cfg.out;
   return 0;
 }
-function winnerOf(m){ const r=parse(realOf(m)); if(!r) return null; const [H,A]=r, [h,a]=teamsOf(m); if(H>A) return h; if(A>H) return a; return null; }
+function winnerOf(m){ const r=parse(realOf(m)); if(!r) return null; const [H,A]=r, [h,a]=teamsOf(m);
+  if(H>A) return h; if(A>H) return a;
+  if(m.stage!=="group" && S.pens && S.pens[m.id]) return S.pens[m.id]==="home"?h:a;  // shoot-out
+  return null; }
+function mById(id){ return D.matches.find(m=>m.id===+id); }
+
+/* ---- knockout auto-seed + auto-advance ---- */
+const R32_TPL=[[73,'1A','2C'],[74,'1B','2D'],[75,'1E','2G'],[76,'1F','2H'],
+ [77,'1I','2K'],[78,'1J','2L'],[79,'1C','2A'],[80,'1D','2B'],
+ [81,'1G','2E'],[82,'1H','2F'],[83,'1K','2I'],[84,'1L','2J'],
+ [85,'T0','T1'],[86,'T2','T3'],[87,'T4','T5'],[88,'T6','T7']];
+function qualifiers(){
+  const st=standings(); const firsts={}, seconds={}, thirds=[];
+  Object.keys(st).sort().forEach(g=>{ const r=st[g];
+    if(r[0]) firsts[g]=r[0].name; if(r[1]) seconds[g]=r[1].name;
+    if(r[2]) thirds.push(Object.assign({grp:g}, r[2])); });
+  thirds.sort((a,b)=> b.Pts-a.Pts || (b.GF-b.GA)-(a.GF-a.GA) || b.GF-a.GF || a.name.localeCompare(b.name));
+  return {firsts, seconds, thirds:thirds.slice(0,8)};
+}
+function resolvePos(pos,q){ if(pos[0]==='1') return q.firsts[pos[1]]||""; if(pos[0]==='2') return q.seconds[pos[1]]||"";
+  const t=q.thirds[+pos.slice(1)]; return t? t.name : ""; }
+function groupComplete(){ return D.matches.filter(m=>m.stage==="group").every(m=>realOf(m)); }
+function autoSeed(){
+  const q=qualifiers();
+  R32_TPL.forEach(([id,ph,pa])=>{ S.ko[String(id)]={home:resolvePos(ph,q), away:resolvePos(pa,q)}; });
+  recomputeKO();
+}
+function parentSlot(id){ id=+id;
+  if(id>=73&&id<=88) return [89+((id-73)>>1), (id-73)%2?'away':'home'];
+  if(id>=89&&id<=96) return [97+((id-89)>>1), (id-89)%2?'away':'home'];
+  if(id>=97&&id<=100) return [101+((id-97)>>1), (id-97)%2?'away':'home'];
+  return null;
+}
+function recomputeKO(){
+  for(let id=89; id<=104; id++) delete S.ko[String(id)];        // rebuild R16..Final from R32 results
+  for(let id=73; id<=100; id++){ const w=winnerOf(mById(id)); if(!w) continue;
+    const ps=parentSlot(id); if(!ps) continue; const o=S.ko[String(ps[0])]=S.ko[String(ps[0])]||{}; o[ps[1]]=w; }
+  [101,102].forEach(id=>{ const m=mById(id); const w=winnerOf(m); if(!w) return; const [h,a]=teamsOf(m); const l=(w===h)?a:h;
+    const slot=id===101?'home':'away';
+    (S.ko["104"]=S.ko["104"]||{})[slot]=w; (S.ko["103"]=S.ko["103"]||{})[slot]=l; });
+}
 function rankOf(t){ return S.ranks[t]!=null? S.ranks[t] : 99; }
 function udWeight(t){ const rk=rankOf(t); for(const [hi,w] of S.cfg.udTiers){ if(rk<=hi) return w; } return 0; }
 function stageReached(team){
@@ -433,6 +486,7 @@ function renderControls(){
   c.innerHTML = `<span class="lbl">Viewing&nbsp;as</span><div class="actors">${actors}</div>
     <span id="syncpill" class="syncpill"><span class="dot"></span><span class="txt">This device only</span></span>
     <span class="spacer"></span>
+    ${VIEW==='ADMIN'?'<button class="btn pri" id="seedko">Seed knockout</button>':''}
     <button class="btn ghost" id="share">Copy link</button>
     <button class="btn ghost" id="demo">Load sample</button>
     <button class="btn" id="exp">Export</button>
@@ -441,8 +495,8 @@ function renderControls(){
     <input type="file" id="impf" accept="application/json" style="display:none">`;
   setStatus(SYNC.status);
   const y=$("#youare");
-  if(VIEW==='ADMIN') y.innerHTML = `<b>Admin mode</b> — enter the <b>real result</b> for each fixture as games finish, and fill the knockout junctions once teams are known. Players see all predictions here.`;
-  else y.innerHTML = `Entering predictions as <b>${esc(VIEW)}</b>. Type a scoreline for any <b>open</b> fixture (kick-off not yet locked). Saved automatically on this device.`;
+  if(VIEW==='ADMIN') y.innerHTML = `<b>Admin mode</b> — type the <b>real result</b> for each fixture as games finish (standings, scores and the bracket update live). Set a <b>kick-off lock</b> per fixture; once the group stage settles, hit <b>Seed knockout</b> and winners auto-advance through the bracket.`;
+  else y.innerHTML = `Entering predictions as <b>${esc(VIEW)}</b>. Type a scoreline for any <b>open</b> fixture — predictions lock at kick-off. Picks you locked in before a game count even after it's played. Saved automatically; ${SYNC.on?'shared live with everyone.':'export to share.'}`;
 }
 
 function renderBoard(){
@@ -472,8 +526,8 @@ function renderFilters(){
     ["group","Group stage"],["R32","R32"],["R16","R16"],["QF","QF"],["SF","SF"],["F","Final"]];
   $("#filters").innerHTML = defs.map(([k,l])=>`<button class="chip ${FILTER===k?'on':''}" data-f="${k}">${l}</button>`).join("");
   const note = VIEW==='ADMIN'
-    ? 'Enter real results (green). The pool runs from fixture #'+S.startId+' onward; earlier results only drive the standings.'
-    : 'Type your scoreline in the blue boxes. Locked once the real result is in. Filtered to: '+(FILTER==='mine'?'fixtures still needing your pick':FILTER);
+    ? 'Type real results in the green boxes — standings, scores and the bracket update instantly. Each fixture has a kick-off lock you can adjust.'
+    : 'Type your scoreline in the blue boxes; they lock at kick-off. Filtered to: '+(FILTER==='mine'?'fixtures still needing your pick':(FILTER==='remaining'?'every fixture without a result':FILTER));
   $("#fixnote").textContent = note;
 }
 
@@ -485,6 +539,8 @@ function passFilter(m){
   return m.stage===FILTER;
 }
 function ptsClass(v){ return v===5?"x5":v===3?"x3":v===2?"x2":"x0"; }
+function koLabel(m){ const k=kickoffOf(m); if(!k) return ""; const d=new Date(k); if(isNaN(d)) return "";
+  return d.toLocaleDateString(undefined,{day:'2-digit',month:'short'})+" "+d.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}); }
 
 function fixtureRow(m){
   const [h,a]=teamsOf(m); const real=realOf(m); const open=isOpen(m);
@@ -508,24 +564,34 @@ function fixtureRow(m){
     }
   })();
   let end="";
-  if(VIEW==='ADMIN'){ end = `<div class="fend">${real?`<span class="res">${esc(real)}</span>`:`<span class="pend">pending</span>`}</div>`; }
+  if(VIEW==='ADMIN'){ end = `<div class="fend">${real?`<span class="res">${esc(real)}</span>`:`<span class="pend">${(h&&a)?'pending':'—'}</span>`}</div>`; }
   else {
     if(real){ const sc=scoreOne(predOf(VIEW,m),real);
       end = `<div class="fend"><span class="res">${esc(real)}</span>${sc!=null?`<span class="pts ${ptsClass(sc)}">+${sc}</span>`:`<span class="pts x0">—</span>`}</div>`; }
-    else { end = `<div class="fend"><span class="pend">${open?'open':'locked'}</span></div>`; }
+    else if(!h||!a){ end = `<div class="fend"><span class="pend">awaiting teams</span></div>`; }
+    else if(lockedByTime(m)){ end = `<div class="fend"><span class="pend lock">kicked off · locked</span></div>`; }
+    else { end = `<div class="fend"><span class="pend">${koLabel(m)?('locks '+koLabel(m)):'open'}</span></div>`; }
   }
   const mine = VIEW!=='ADMIN' && (predOf(VIEW,m) || open);
   let row = `<div class="frow ${real?'locked':''} ${mine?'mine':''}">
      <span class="fnum">${m.stage==='group'?m.id:m.stage}</span>${homeCell}${mid}${awayCell}${end}`;
-  // admin: knockout team entry + everyone's predictions
-  if(VIEW==='ADMIN' && m.stage!=='group' && (!h||!a)){
-    row += `<div class="fpreds"><div class="koteam"><input list="teamlist" placeholder="home team" data-mid="${m.id}" data-kind="ko" data-side="home" value="${esc(h)}">
-      <span class="dash">vs</span><input list="teamlist" placeholder="away team" data-mid="${m.id}" data-kind="ko" data-side="away" value="${esc(a)}"></div></div>`;
-  }
-  if(VIEW==='ADMIN' && real){
-    const pr=D.players.map(p=>{ const pd=predOf(p,m); const sc=scoreOne(pd,real);
-      return `<span class="pp"><b>${esc(p)}</b> <span class="mini">${pd?esc(pd):'—'}${sc!=null?` · +${sc}`:''}</span></span>`; }).join("");
-    row += `<div class="fpreds">${pr}</div>`;
+  if(VIEW==='ADMIN'){
+    if(m.stage!=='group' && (!h||!a)){
+      row += `<div class="fpreds"><div class="koteam"><input list="teamlist" placeholder="home team" data-mid="${m.id}" data-kind="ko" data-side="home" value="${esc(h)}">
+        <span class="dash">vs</span><input list="teamlist" placeholder="away team" data-mid="${m.id}" data-kind="ko" data-side="away" value="${esc(a)}"></div></div>`;
+    }
+    let meta = `<label class="kolabel">kick-off lock <input type="datetime-local" class="koin" data-mid="${m.id}" data-kind="kick" value="${esc(kickoffOf(m))}"></label>`;
+    const pr=parse(real);
+    if(m.stage!=='group' && pr && pr[0]===pr[1] && h && a){
+      meta += `<span class="penbox">drawn — through on pens:
+        <button class="penbtn ${S.pens[m.id]==='home'?'on':''}" data-mid="${m.id}" data-kind="pen" data-side="home">${esc(code(h))}</button>
+        <button class="penbtn ${S.pens[m.id]==='away'?'on':''}" data-mid="${m.id}" data-kind="pen" data-side="away">${esc(code(a))}</button></span>`;
+    }
+    row += `<div class="fpreds admeta">${meta}</div>`;
+    if(real){ const pr2=D.players.map(p=>{ const pd=predOf(p,m); const sc=scoreOne(pd,real);
+        return `<span class="pp"><b>${esc(p)}</b> <span class="mini">${pd?esc(pd):'—'}${sc!=null?` · +${sc}`:''}</span></span>`; }).join("");
+      row += `<div class="fpreds">${pr2}</div>`;
+    }
   }
   row += `</div>`;
   return row;
@@ -602,11 +668,11 @@ function renderSide(){
      <div class="help">Tournament bonuses · <b>Champion</b> = +${c.champ} if your pick lifts it. <b>Longshot</b> = stage reached (R32=1 … champion=6) × ranking weight
        (#1–10 ×0, #11–20 ×1, #21–32 ×2, #33–42 ×3, #43–48 ×4). A #45 side in the quarters (3×4=12) beats a #12 side in the semis (4×1=4).</div>
    </div>
-   <div class="board fares"><h3>How it runs</h3><div class="sub">offline · saved to this browser</div>
-     <div class="help">1 · Pick <b>who you are</b> top-left and type scorelines for the <b>Remaining</b> fixtures.<br>
-       2 · <b>Admin</b> enters real results and fills knockout junctions as teams are known.<br>
-       3 · <b>Export</b> your file to merge everyone’s picks, or just pass this HTML around.<br>
-       The pool scores from fixture <b>#${S.startId}</b> onward; earlier games are locked and only feed the standings.</div>
+   <div class="board fares"><h3>How it runs</h3><div class="sub">${SYNC.on?'shared live · everyone on one board':'offline · saved to this browser'}</div>
+     <div class="help">1 · Pick <b>who you are</b> top-left and type scorelines — use <b>Needs my pick</b> to see only what's still open.<br>
+       2 · A prediction <b>locks at kick-off</b>; anything you locked in beforehand still scores once the result lands.<br>
+       3 · <b>Admin</b> types results; when the groups finish, <b>Seed knockout</b> fills the R32 and winners auto-advance.<br>
+       4 · ${SYNC.on?'Everyone shares one live board — no exporting needed.':'<b>Export</b> to merge picks, or add the Firebase config for a shared live board.'}</div>
    </div>`;
 }
 
@@ -635,17 +701,26 @@ function bind(){
     if(e.target.id==="reset"){ if(confirm(SYNC.on?"Reset the shared pool for everyone?":"Reset all predictions, results and bonuses on this device?")){ S=defState(); pushAll(); commit(true); toast("Reset"); } return; }
     if(e.target.id==="demo"){ if(confirm("Load sample predictions for everyone? (overwrites current picks)")){ seedDemo(); pushAll(); commit(true); toast("Sample loaded"); } return; }
     if(e.target.id==="share"){ const u=location.href.split("#")[0]; (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast("Link copied")).catch(()=>prompt("Copy the link:",u)); return; }
+    if(e.target.id==="seedko"){ const q=qualifiers(); const n=Object.keys(q.firsts).length;
+      if(!groupComplete() && !confirm("The group stage isn't finished — seed the Round of 32 from the current standings anyway? You can adjust any junction afterwards.")) return;
+      autoSeed(); save(); pushField("ko", S.ko); commit(true); toast("Knockout seeded"); return; }
+    const pen=e.target.closest("[data-kind=pen]");
+    if(pen){ const mid=pen.dataset.mid, side=pen.dataset.side; S.pens[mid]= (S.pens[mid]===side)? "" : side;
+      recomputeKO(); save(); pushField("pens", S.pens); pushField("ko", S.ko); renderBoard(); renderBracket(); renderDrivers(); renderFixtures(); return; }
   });
   app.addEventListener("change", e=>{
     const t=e.target; const mid=t.dataset.mid, kind=t.dataset.kind, side=t.dataset.side;
     if(t.dataset.bp){ const who=t.dataset.bp; S.bonus[who][t.dataset.k]=t.value; save(); pushField("bonus."+who, S.bonus[who]); renderBoard(); renderDrivers(); renderBracket(); return; }
     if(!mid) return;
+    if(kind==="kick"){ if(t.value) S.kickoff[mid]=t.value; else delete S.kickoff[mid]; save(); pushField("kickoff", S.kickoff); return; }
+    if(kind==="ko"){ const k=S.ko[mid]=S.ko[mid]||{}; k[side]=t.value; save(); pushField("ko", S.ko); renderBracket();
+      if(k.home && k.away) renderFixtures(); return; }
     const v = t.value===""? "" : String(Math.max(0,Math.min(29,parseInt(t.value,10)||0)));
     if(kind==="pred"){ setPredPart(VIEW,mid,side,v); save(); pushField("preds."+VIEW, S.preds[VIEW]); renderBoard(); /* no list rebuild: keep focus */ }
-    else if(kind==="res"){ setResPart(mid,side,v); save(); pushField("results", S.results); renderBoard(); renderPlatforms(); renderBracket();
-      if(S.results[mid]) renderFixtures(); /* only rebuild once result complete, to preserve focus */ }
-    else if(kind==="ko"){ const k=S.ko[mid]=S.ko[mid]||{}; k[side]=t.value; save(); pushField("ko", S.ko); renderBracket();
-      if(k.home && k.away) renderFixtures(); }
+    else if(kind==="res"){ setResPart(mid,side,v); save();
+      const m=mById(mid); if(m && m.stage!=='group'){ recomputeKO(); pushField("ko", S.ko); }
+      pushField("results", S.results); renderBoard(); renderPlatforms(); renderBracket(); renderDrivers();
+      if(S.results[mid]) renderFixtures(); /* rebuild once result complete, to preserve focus */ }
   });
   const impf=$("#impf"); if(impf) impf.addEventListener("change", doImport);
 }
@@ -663,9 +738,8 @@ function doImport(e){
 
 function seedDemo(){
   const rng=(seed=>()=>(seed=(seed*1103515245+12345)&0x7fffffff)/0x7fffffff)(7);
-  D.players.forEach(p=>{ D.matches.forEach(m=>{ if(m.stage!=="group") return; if(m.id<S.startId) return;
+  D.players.forEach(p=>{ D.matches.forEach(m=>{ if(m.stage!=="group" || realOf(m)) return;
     const h=Math.floor(rng()*4), a=Math.floor(rng()*3); S.preds[p][m.id]=h+"-"+a; }); });
-  // a couple of fresh results to show scoring
   [["33","2-2"],["34","3-1"],["35","1-1"],["36","0-2"],["37","2-1"]].forEach(([id,r])=>{ S.results[id]=r; });
 }
 
