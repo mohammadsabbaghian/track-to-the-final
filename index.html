@@ -476,7 +476,6 @@ function render(){
   </div>`;
 
   renderControls(); renderBoard(); renderPlatforms(); renderFilters(); renderFixtures(); renderBracket(); renderDrivers(); renderSide();
-  bind();
 }
 
 function renderControls(){
@@ -710,19 +709,33 @@ function bind(){
   });
   app.addEventListener("change", e=>{
     const t=e.target; const mid=t.dataset.mid, kind=t.dataset.kind, side=t.dataset.side;
+    if(t.id==="impf"){ doImport(e); return; }
     if(t.dataset.bp){ const who=t.dataset.bp; S.bonus[who][t.dataset.k]=t.value; save(); pushField("bonus."+who, S.bonus[who]); renderBoard(); renderDrivers(); renderBracket(); return; }
     if(!mid) return;
     if(kind==="kick"){ if(t.value) S.kickoff[mid]=t.value; else delete S.kickoff[mid]; save(); pushField("kickoff", S.kickoff); return; }
     if(kind==="ko"){ const k=S.ko[mid]=S.ko[mid]||{}; k[side]=t.value; save(); pushField("ko", S.ko); renderBracket();
       if(k.home && k.away) renderFixtures(); return; }
-    const v = t.value===""? "" : String(Math.max(0,Math.min(29,parseInt(t.value,10)||0)));
-    if(kind==="pred"){ setPredPart(VIEW,mid,side,v); save(); pushField("preds."+VIEW, S.preds[VIEW]); renderBoard(); /* no list rebuild: keep focus */ }
-    else if(kind==="res"){ setResPart(mid,side,v); save();
-      const m=mById(mid); if(m && m.stage!=='group'){ recomputeKO(); pushField("ko", S.ko); }
-      pushField("results", S.results); renderBoard(); renderPlatforms(); renderBracket(); renderDrivers();
-      if(S.results[mid]) renderFixtures(); /* rebuild once result complete, to preserve focus */ }
+    if(kind==="pred" || kind==="res"){
+      const clampStr = x => x===""? "" : String(Math.max(0,Math.min(29,parseInt(x,10)||0)));
+      t.value = clampStr(t.value);                 // read BOTH boxes from the DOM, not from stored state
+      const hI=$(`input[data-mid="${mid}"][data-kind="${kind}"][data-side="h"]`);
+      const aI=$(`input[data-mid="${mid}"][data-kind="${kind}"][data-side="a"]`);
+      const hh=clampStr(hI?hI.value:""), aa=clampStr(aI?aI.value:"");
+      const val = (hh!=="" && aa!=="") ? hh+"-"+aa : "";
+      if(kind==="pred"){
+        S.preds[VIEW]=S.preds[VIEW]||{}; if(val) S.preds[VIEW][mid]=val; else delete S.preds[VIEW][mid];
+        save(); pushField("preds."+VIEW, S.preds[VIEW]); renderBoard(); /* no list rebuild: keep focus */
+      } else {
+        if(val) S.results[mid]=val; else delete S.results[mid];
+        const m=mById(mid); const isKO = m && m.stage!=='group';
+        if(isKO) recomputeKO();          // advance winners before saving
+        save();
+        pushField("results", S.results); if(isKO) pushField("ko", S.ko);
+        renderBoard(); renderPlatforms(); renderBracket(); renderDrivers();
+        if(val) renderFixtures(); /* rebuild once result complete, to preserve focus */
+      }
+    }
   });
-  const impf=$("#impf"); if(impf) impf.addEventListener("change", doImport);
 }
 
 function doExport(){
@@ -745,6 +758,7 @@ function seedDemo(){
 
 /* boot */
 render();
+bind();          // delegated listeners attach once to the stable #app element
 initSync();
 })();
 </script>
