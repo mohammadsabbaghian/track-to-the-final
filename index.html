@@ -289,7 +289,7 @@ function setStatus(st){ SYNC.status=st; const p=document.querySelector("#syncpil
   const tx=p.querySelector(".txt"); if(tx) tx.textContent=t;
 }
 function serialize(st){ return {results:st.results||{}, ko:st.ko||{}, pens:st.pens||{}, kickoff:st.kickoff||{},
-  ranks:st.ranks||{}, cfg:st.cfg||{}, preds:st.preds||{}, bonus:st.bonus||{}, _ts:stamp()}; }
+  preds:st.preds||{}, bonus:st.bonus||{}, _ts:stamp()}; }   // cfg/ranks are baked-in config (Firestore rejects cfg's nested array)
 let syncTries=0, syncTimer=null;
 async function initSync(){
   const cfg = window.FIREBASE_CONFIG;
