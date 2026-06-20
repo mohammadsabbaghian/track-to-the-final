@@ -71,8 +71,9 @@ h1.title em{font-style:normal;color:var(--royal-500)}
 .btn.ghost{background:transparent}
 .youare{font-size:12px;color:var(--mut);margin:10px 2px 0}
 .youare b{color:var(--royal-300)}
-.syncpill{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.04em;
+.syncpill{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.04em;cursor:pointer;
  color:var(--mut);background:rgba(255,255,255,.05);border:1px solid var(--line-2);border-radius:20px;padding:6px 12px}
+.syncpill:hover{border-color:var(--royal-500)}
 .syncpill .dot{width:8px;height:8px;border-radius:50%;background:var(--mut2)}
 .syncpill.on{color:#bfe9cf;border-color:rgba(58,208,127,.4)}
 .syncpill.on .dot{background:var(--good);box-shadow:0 0 0 3px rgba(58,208,127,.16)}
@@ -289,9 +290,11 @@ function setStatus(st){ SYNC.status=st; const p=document.querySelector("#syncpil
 }
 function serialize(st){ return {results:st.results||{}, ko:st.ko||{}, pens:st.pens||{}, kickoff:st.kickoff||{},
   ranks:st.ranks||{}, cfg:st.cfg||{}, preds:st.preds||{}, bonus:st.bonus||{}, _ts:stamp()}; }
+let syncTries=0, syncTimer=null;
 async function initSync(){
   const cfg = window.FIREBASE_CONFIG;
   if(!cfg || !cfg.apiKey || String(cfg.apiKey).indexOf("PASTE")>=0 || !window.firebase){ setStatus("local"); return; }
+  clearTimeout(syncTimer);
   try{
     if(!firebase.apps.length) firebase.initializeApp(cfg);
     setStatus("connecting");
@@ -300,10 +303,11 @@ async function initSync(){
     SYNC.remote = db.collection("pools").doc("default");
     const snap = await SYNC.remote.get();
     if(!snap.exists){ await SYNC.remote.set(serialize(S)); }
-    SYNC.on = true; setStatus("connected");
-    SYNC.remote.onSnapshot(s=>{ const d=s.data(); if(d) applyRemote(d); }, ()=> setStatus("error"));
-  }catch(e){ console.warn("sync init failed", e); setStatus("error"); }
+    SYNC.on = true; syncTries=0; setStatus("connected");
+    SYNC.remote.onSnapshot(s=>{ const d=s.data(); if(d) applyRemote(d); }, ()=>{ SYNC.on=false; setStatus("error"); retrySync(); });
+  }catch(e){ console.warn("sync init failed", e); SYNC.on=false; setStatus("error"); retrySync(); }
 }
+function retrySync(){ if(syncTries++ >= 8) return; clearTimeout(syncTimer); syncTimer=setTimeout(initSync, Math.min(20000, 2500*syncTries)); }
 function applyRemote(d){
   if(d._ts && d._ts===SYNC.ts) return;            // ignore our own write echoing back
   SYNC.ts = d._ts||SYNC.ts; SYNC.applying=true;
@@ -483,7 +487,7 @@ function renderControls(){
   const actors = D.players.map(p=>`<button class="actor ${VIEW===p?'on':''}" data-act="${p}">${esc(p)}</button>`).join("")
     + `<button class="actor adm ${VIEW==='ADMIN'?'on':''}" data-act="ADMIN">Admin · results</button>`;
   c.innerHTML = `<span class="lbl">Viewing&nbsp;as</span><div class="actors">${actors}</div>
-    <span id="syncpill" class="syncpill"><span class="dot"></span><span class="txt">This device only</span></span>
+    <span id="syncpill" class="syncpill" title="Shared sync status — click to reconnect"><span class="dot"></span><span class="txt">This device only</span></span>
     <span class="spacer"></span>
     ${VIEW==='ADMIN'?'<button class="btn pri" id="seedko">Seed knockout</button>':''}
     <button class="btn ghost" id="share">Copy link</button>
@@ -693,6 +697,7 @@ function setResPart(mid,side,val){
 function bind(){
   const app=$("#app");
   app.addEventListener("click", e=>{
+    if(e.target.closest("#syncpill")){ syncTries=0; toast("Reconnecting…"); initSync(); return; }
     const act=e.target.closest("[data-act]"); if(act){ VIEW=act.dataset.act; render(); return; }
     const f=e.target.closest("[data-f]"); if(f){ FILTER=f.dataset.f; renderFilters(); renderFixtures(); return; }
     if(e.target.id==="exp") return doExport();
