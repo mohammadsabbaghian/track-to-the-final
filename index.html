@@ -249,6 +249,32 @@ h1.title em{font-style:normal;color:var(--royal-500)}
  border:1px solid var(--royal-500);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:10px;
  box-shadow:0 12px 40px -12px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+/* ---------- Oranje — the Dutch company's team (Netherlands) ---------- */
+:root{ --orange:#FF6A1A; --orange-300:#FFB487; }
+.ourpip{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);
+ vertical-align:middle;margin-left:7px;box-shadow:0 0 0 3px rgba(255,106,26,.18)}
+.oranjetag{display:inline-block;font-family:var(--sans);font-style:normal;font-size:10.5px;font-weight:700;
+ letter-spacing:.1em;text-transform:uppercase;color:#241408;background:var(--orange);
+ border-radius:20px;padding:3px 11px;margin-left:10px;vertical-align:middle}
+.prow.oranje{background:linear-gradient(90deg,rgba(255,106,26,.20),rgba(255,106,26,.03))}
+.prow.oranje .pos{color:var(--orange-300)}
+.prow.oranje .nm{color:#ffe2cd;font-weight:600}
+.prow.oranje .cd{background:var(--orange);border-color:var(--orange);color:#241408}
+.fteam.oranje .nm{color:#ffe2cd}
+.fteam.oranje .cd{background:var(--orange);border-color:var(--orange);color:#241408}
+.tie .s.oranje .cc,.finslots .s.oranje .cc{color:var(--orange)}
+.tie .s.oranje .bnm,.finslots .s.oranje .bnm{color:#ffe2cd}
+.tie .s.oranje .d,.finslots .s.oranje .d{border-color:var(--orange)}
+.tie .s.oranje.win .d,.finslots .s.oranje.win .d{background:var(--orange)}
+.pick.oranje select{border-color:var(--orange)}
+/* Dutch footer badge */
+.dutchstrip{margin-top:40px;display:flex;align-items:center;justify-content:center;gap:11px;flex-wrap:wrap;
+ font-size:12px;letter-spacing:.05em;color:var(--mut);text-align:center}
+.dutchstrip .orchev{display:inline-flex;color:var(--orange);height:13px}
+.dutchstrip .orchev .chev{color:var(--orange)}
+.dutchstrip b{color:var(--orange-300);font-weight:600}
+.dutchstrip .nl{display:inline-flex;height:11px;width:16px;border-radius:2px;overflow:hidden;vertical-align:middle;
+ background:linear-gradient(#AE1C28 0 33.3%,#fff 33.3% 66.6%,#21468B 66.6% 100%);box-shadow:0 0 0 1px rgba(255,255,255,.12)}
 @media print{.controls{position:static}.sc:disabled{opacity:1}}
 </style></head>
 <body>
@@ -267,6 +293,8 @@ const WM = ()=> $("#tpl-wm").innerHTML;
 const CH = ()=> $("#tpl-ch").innerHTML;
 const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const code = t => D.code[t] || (t? t.slice(0,3).toUpperCase() : "—");
+const OURS = "Netherlands";                 // the Dutch company's team — flagged in orange
+const ours = t => t===OURS ? "oranje" : "";
 const STAGE_NAMES = {R32:"Round of 32",R16:"Round of 16",QF:"Quarter-finals",SF:"Semi-finals",P3:"Third-place play-off",F:"Final"};
 const KO_ORDER = ["R32","R16","QF","SF","P3","F"];
 
@@ -452,7 +480,7 @@ function render(){
     </div>
     <div class="hero">
       <div>
-        <p class="eyebrow">FIFA World Cup 2026 · United States · Canada · Mexico</p>
+        <p class="eyebrow">FIFA World Cup 2026 · United States · Canada · Mexico <span class="oranjetag">Hup Oranje</span></p>
         <h1 class="title">The Track<br>to the <em>Final</em></h1>
         <p class="lede"><b>48 teams. 12 platforms. One destination.</b> Call every scoreline, score points for getting close,
         and ride the line toward the terminus. Kicktipp scoring — exact <b>${S.cfg.exact}</b>, goal difference <b>${S.cfg.gd}</b>, right result <b>${S.cfg.out}</b>.</p>
@@ -483,6 +511,9 @@ function render(){
     <div class="sec"><div class="sechead"><span class="no">04</span><h2>The Drivers</h2>
       <span class="note">Each driver calls a champion and a longshot. The longshot pays out on <em>how far it runs × how lowly it is ranked</em> — bravery rewarded.</span></div>
       <div class="grid2"><div id="drivers"></div><div id="side"></div></div></div>
+
+    <div class="dutchstrip"><span class="nl"></span><span class="orchev">${CH()}</span>
+      <span>Built in the Netherlands · <b>Hup Oranje</b> — Iranian, German &amp; American at heart</span></div>
 
     <div class="foot">
       <div class="l">${CH()}<span class="tag">Built for the track ahead.</span></div>
@@ -529,8 +560,8 @@ function renderPlatforms(){
   $("#platforms").innerHTML = order.map(g=>{
     const rows=st[g]; const maxP=Math.max(0,...rows.map(t=>t.P));
     const body=rows.map((t,i)=>{ const gd=t.GF-t.GA, gds=gd>0?("+"+gd):(""+gd);
-      return `<div class="prow ${i<2?'dep':''}"><span class="pos">${i+1}</span><span class="cd">${code(t.name)}</span>
-        <span class="nm">${esc(t.name)}</span><span class="gp">${t.P}P · ${gds}</span><span class="pt">${t.Pts}</span></div>`; }).join("");
+      return `<div class="prow ${i<2?'dep':''} ${ours(t.name)}"><span class="pos">${i+1}</span><span class="cd">${code(t.name)}</span>
+        <span class="nm">${esc(t.name)}${t.name===OURS?'<span class="ourpip" title="Built in the Netherlands · Hup Oranje"></span>':''}</span><span class="gp">${t.P}P · ${gds}</span><span class="pt">${t.Pts}</span></div>`; }).join("");
     return `<div class="plat"><div class="ph"><span class="ptag">Platform</span><span class="pl">${g}</span>${CH()}</div>${body}
       <div class="pf"><span>${maxP>=2?'2':'1'} of 3 run</span><span class="dep">Top 2 depart ❯</span></div></div>`;
   }).join("");
@@ -558,8 +589,8 @@ function koLabel(m){ const k=kickoffOf(m); if(!k) return ""; const d=new Date(k)
 function fixtureRow(m){
   const [h,a]=teamsOf(m); const real=realOf(m); const open=isOpen(m);
   const tbdH = h?"":"tbd", tbdA=a?"":"tbd";
-  const homeCell = `<div class="fteam home ${tbdH}"><span class="cd">${code(h)}</span><span class="nm">${esc(h||"awaiting")}</span></div>`;
-  const awayCell = `<div class="fteam away ${tbdA}"><span class="nm">${esc(a||"awaiting")}</span><span class="cd">${code(a)}</span></div>`;
+  const homeCell = `<div class="fteam home ${tbdH} ${ours(h)}"><span class="cd">${code(h)}</span><span class="nm">${esc(h||"awaiting")}</span></div>`;
+  const awayCell = `<div class="fteam away ${tbdA} ${ours(a)}"><span class="nm">${esc(a||"awaiting")}</span><span class="cd">${code(a)}</span></div>`;
   const mid = (()=>{
     if(VIEW==='ADMIN'){
       const r=parse(real)||["",""];
@@ -638,7 +669,7 @@ function brSlot(m, side, team, isWinner){
   } else {
     inner=`<span class="bnm tbd">awaiting</span>`;
   }
-  return `<div class="s ${isWinner?'win':''}"><span class="d"></span>${inner}</div>`;
+  return `<div class="s ${isWinner?'win':''} ${ours(team)}"><span class="d"></span>${inner}</div>`;
 }
 /* knockout bracket — results & predictions are entered right here on the tree */
 function renderBracket(){
