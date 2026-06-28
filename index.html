@@ -679,10 +679,8 @@ function brSlot(m, side, team, isWinner){
 }
 /* knockout bracket — results & predictions are entered right here on the tree */
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 const koNo = m => (D.kofifa&&D.kofifa[m.id])||m.id;            // real FIFA match number for this slot
 const fmtKO = d => { if(!d) return ""; const p=d.split("-"); return (+p[2])+" "+MON[(+p[1])-1]; };
-const fmtFull = d => { if(!d) return ""; const dd=new Date(d+"T12:00"); return WD[dd.getDay()]+" "+dd.getDate()+" "+MON[dd.getMonth()]; };
 function renderBracket(){
   const colW=326,cardW=208,cardH=66,P=90,termW=240;
   const xs=[0,colW,2*colW,3*colW,4*colW], Hgt=16*P;
@@ -723,27 +721,7 @@ function renderBracket(){
   const bw=xs[4]+termW;
   const svg = `<svg class="tracks" viewBox="0 0 ${bw} ${Hgt}" preserveAspectRatio="none">`+
     segs.map(s=>`<line x1="${s[0].toFixed(0)}" y1="${s[1].toFixed(0)}" x2="${s[2].toFixed(0)}" y2="${s[3].toFixed(0)}" stroke="rgba(140,166,222,.32)" stroke-width="1.5"/>`).join("")+`</svg>`;
-  // Round of 32 in playing order (chronological), grouped by date
-  const r32 = D.matches.filter(m=>m.stage==='R32').slice()
-    .sort((a,b)=>{ const ma=D.r32meta[a.id], mb=D.r32meta[b.id];
-      return (ma.date+String(ma.fifa).padStart(3,'0')).localeCompare(mb.date+String(mb.fifa).padStart(3,'0')); });
-  let lastD=""; const nm=t=> `<b style="font-weight:600;color:${t===OURS?'var(--orange-300)':'#fff'}">${esc(t)}</b>`;
-  const orderRows = r32.map(m=>{ const meta=D.r32meta[m.id]; const [h,a]=teamsOf(m);
-    const hdr = meta.date!==lastD ? `<div style="margin:12px 0 4px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--royal-300)">${fmtFull(meta.date)}</div>` : "";
-    lastD=meta.date;
-    const res = realOf(m)? `<span style="color:var(--good);font-weight:700;font-variant-numeric:tabular-nums">${esc(realOf(m))}</span>` : `<span style="color:var(--mut2)">v</span>`;
-    return hdr+`<div style="display:flex;align-items:center;gap:9px;padding:4px 0;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.05)">
-      <span style="width:38px;color:var(--mut2);font-size:10px;flex:none">M${meta.fifa}</span>
-      <span style="flex:1;text-align:right;min-width:0">${nm(h)} <span style="color:var(--mut2);font-size:10px">${esc(code(h))}</span></span>
-      <span style="flex:none;min-width:30px;text-align:center">${res}</span>
-      <span style="flex:1;min-width:0"><span style="color:var(--mut2);font-size:10px">${esc(code(a))}</span> ${nm(a)}</span>
-      <span style="flex:none;width:180px;text-align:right;color:var(--mut2);font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(meta.venue)}</span>
-    </div>`;
-  }).join("");
-  const orderPanel = `<div class="kowrap" style="margin-bottom:14px;padding:20px 24px">
-    <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut2);margin-bottom:2px">Round of 32 · in playing order</div>
-    ${orderRows}</div>`;
-  $("#bracket").innerHTML = orderPanel + `<div class="kowrap"><div class="koheads" style="width:${bw}px">${heads}</div>
+  $("#bracket").innerHTML = `<div class="kowrap"><div class="koheads" style="width:${bw}px">${heads}</div>
     <div class="bracket" style="height:${Hgt}px;width:${bw}px">${svg}${ties}${tp}${term}</div>
     <div class="kocap">${CH()} ${champ?'Champion locked in.':(VIEW==='ADMIN'?'Hit “Seed knockout” once the groups finish, then type each result right on the tie — winners auto-advance down the line.':'Predict each tie right here once the teams arrive. Scores save automatically.')}</div></div>`;
 }
