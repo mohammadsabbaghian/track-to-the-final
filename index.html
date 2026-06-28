@@ -184,15 +184,18 @@ h1.title em{font-style:normal;color:var(--royal-500)}
 .bracket{position:relative;margin:0 auto}
 .bracket svg.tracks{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .tie{position:absolute;z-index:1;background:rgba(31,33,38,.96);border:1px solid var(--line-2);border-radius:9px}
-.tie .s,.finslots .s{display:flex;align-items:center;gap:8px;padding:7px 9px;font-size:11.5px;color:var(--mut)}
+.tie .s,.finslots .s{display:flex;align-items:center;gap:8px;padding:7px 9px;font-size:11.5px;color:var(--txt)}
 .tie .s+.s,.finslots .s+.s{border-top:1px solid rgba(255,255,255,.06)}
 .tie .s .d,.finslots .s .d{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--royal-500);flex:none}
 .tie .s.win,.finslots .s.win{color:#fff;font-weight:600}.tie .s.win .d,.finslots .s.win .d{background:var(--royal-500)}
-.tie .s .cc,.finslots .s .cc{font-weight:700;font-size:10px;color:var(--mut2);flex:none}
+.tie .s .cc,.finslots .s .cc{font-weight:700;font-size:10px;color:var(--mut);flex:none}
 .tie .s .bnm,.finslots .s .bnm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tie .s .bnm.tbd,.finslots .s .bnm.tbd{color:var(--mut2);font-style:italic}
 .finslots{background:rgba(0,0,0,.22);border:1px solid var(--line-2);border-radius:8px;margin-top:9px;overflow:hidden;text-align:left}
-.tie .tl{position:absolute;top:-9px;left:9px;font-family:var(--serif);font-size:11px;color:var(--mut2);background:var(--midnight);padding:0 6px;z-index:1}
+.tie .tl{position:absolute;top:-11px;left:8px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.02em;
+ background:var(--mid-3);border:1px solid var(--line-2);border-radius:6px;padding:2px 8px;z-index:2;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.tie .tl .kd{color:#fff}
+.tie .tl .km{color:var(--royal-300);font-weight:700}
 .tie-sc{width:30px;height:24px;flex:none;text-align:center;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;
  color:#fff;background:rgba(0,0,0,.32);border:1px solid var(--line);border-radius:6px;font-family:var(--sans)}
 .tie-sc:focus{outline:0;border-color:var(--royal-500);background:rgba(0,57,181,.18)}
@@ -679,8 +682,9 @@ function brSlot(m, side, team, isWinner){
 }
 /* knockout bracket — results & predictions are entered right here on the tree */
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 const koNo = m => (D.kofifa&&D.kofifa[m.id])||m.id;            // real FIFA match number for this slot
-const fmtKO = d => { if(!d) return ""; const p=d.split("-"); return (+p[2])+" "+MON[(+p[1])-1]; };
+const fmtKO = d => { if(!d) return ""; const dd=new Date(d+"T12:00"); return WD[dd.getDay()]+" "+dd.getDate()+" "+MON[dd.getMonth()]; };
 function renderBracket(){
   const colW=326,cardW=208,cardH=66,P=90,termW=240;
   const xs=[0,colW,2*colW,3*colW,4*colW], Hgt=16*P;
@@ -698,7 +702,9 @@ function renderBracket(){
     if(VIEW==='ADMIN' && pr && pr[0]===pr[1] && h && a){
       pens=`<div class="tie-pens">pens<button class="penbtn ${S.pens[m.id]==='home'?'on':''}" data-mid="${m.id}" data-kind="pen" data-side="home">${esc(code(h))}</button><button class="penbtn ${S.pens[m.id]==='away'?'on':''}" data-mid="${m.id}" data-kind="pen" data-side="away">${esc(code(a))}</button></div>`;
     }
-    const meta=D.r32meta&&D.r32meta[m.id]; const tl=`M${koNo(m)}`+(meta?` · ${fmtKO(meta.date)}`:"");
+    const meta=D.r32meta&&D.r32meta[m.id];
+    const tl = meta ? `<span class="kd">${fmtKO(meta.date)}</span><span class="km">M${koNo(m)}</span>`
+                    : `<span class="kd">M${koNo(m)}</span>`;
     ties += `<div class="tie ${VIEW==='ADMIN'?'adm':''}" style="left:${x}px;top:${y.toFixed(0)}px;width:${cardW}px"><span class="tl">${tl}</span>${brSlot(m,'h',h,w===h)}${brSlot(m,'a',a,w===a)}${pens}</div>`;
     const px=xs[r+1], py=cy(r+1,j>>1), chx=x+cardW, chy=cy(r,j), mx=(chx+px)/2;
     segs.push([chx,chy,mx,chy],[mx,chy,mx,py],[mx,py,px,py]);
